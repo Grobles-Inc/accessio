@@ -1,6 +1,7 @@
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { supabase } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
+import { Skeleton } from '../ui/skeleton'
 
 type BalanceData = {
   totalGanado: number
@@ -90,7 +91,7 @@ export function BalanceSummary() {
     return new Intl.NumberFormat('es-PE', {
       style: 'currency',
       currency: 'PEN',
-      minimumFractionDigits: 2
+      minimumFractionDigits: 2,
     }).format(amount)
   }
 
@@ -98,23 +99,43 @@ export function BalanceSummary() {
 
   return (
 
-    <Card className=" group-data-[collapsible=icon]:hidden bg-lime-400 text-black m-2 rounded-md">
-
+    <Card className=" group-data-[collapsible=icon]:hidden bg-gradient-to-b from-primary to-white text-black m-2 rounded-md ">
       <CardContent>
         {balanceData.loading ? (
-          <div className="text-center py-8">Cargando...</div>
+          <div className="flex flex-col  ">
+            <CardHeader>
+              <CardTitle className='flex flex-col items-center justify-center'>
+                <span className='text-sm'>Contabilidad</span>
+                <Skeleton className=" rounded-lg w-32 h-8" />
+              </CardTitle>
+            </CardHeader>
+
+            <div className="flex justify-between gap-4 pt-2 ">
+              <div className="flex flex-col  w-24">
+                <span className='text-xs'> Recargas</span>
+                <Skeleton className="h-6 w-20 rounded-sm" />
+              </div>
+              <div className="flex flex-col text-right  w-24">
+                <span className='text-xs'> Retiros</span>
+                <Skeleton className="h-6 w-20 rounded-sm" />
+              </div>
+            </div>
+          </div>
         ) : (
           <div>
-
-            <span className="text-sm">Contabilidad</span>
-            <div className="text-2xl font-bold">{formatCurrency(balanceData.balanceTotal)}</div>
+            <CardHeader>
+              <CardTitle className='flex flex-col items-center justify-center'>
+                <span className='text-sm'>Contabilidad</span>
+                <span className='text-2xl font-bold'>{formatCurrency(balanceData.balanceTotal)}</span>
+              </CardTitle>
+            </CardHeader>
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs  ">Recargas</span>
                 <div className="text-sm font-medium">{formatCurrency(balanceData.totalGanado)}</div>
               </div>
-              <div>
-                <span className="text-xs  ">Retiros</span>
+              <div className='text-right'>
+                <span className="text-xs text-right ">Retiros</span>
                 <div className="text-sm font-medium">{formatCurrency(balanceData.totalPerdido)}</div>
               </div>
             </div>

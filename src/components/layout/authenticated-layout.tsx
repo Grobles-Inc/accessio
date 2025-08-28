@@ -1,5 +1,4 @@
 import { AppSidebar } from '@/components/layout/app-sidebar'
-import SkipToMain from '@/components/skip-to-main'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import { SearchProvider } from '@/context/search-context'
 import { cn } from '@/lib/utils'
@@ -20,7 +19,6 @@ export function AuthenticatedLayout({ children }: Props) {
   return (
     <SearchProvider>
       <SidebarProvider defaultOpen={defaultOpen}>
-        <SkipToMain />
         <AppSidebar />
         <div
           id='content'

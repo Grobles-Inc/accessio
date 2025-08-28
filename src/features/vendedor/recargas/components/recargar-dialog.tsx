@@ -62,14 +62,12 @@ export function RecargarDialog() {
       })
       form.reset()
       setDialogOpen(false)
-      const audio = new Audio('/src/assets/sound/yape.mp3')
-      audio.play()
       setTimeout(() => {
         RecargaMessage({
           usuario: user?.usuario || '',
           monto: Number(data.amount),
           id_cliente: user?.id || '',
-        }, '51913190401', isMobile ? 'mobile' : 'web')
+        }, '51972557287', isMobile ? 'mobile' : 'web')
       }, 3000)
     } catch (error) {
       console.error('Error:', error)
@@ -123,7 +121,7 @@ export function RecargarDialog() {
                         <div className='flex justify-between items-center'>
 
                           <span className='text-sm text-gray-500'>TC: {configuracion?.conversion} -  {((field.value || 0) / (configuracion?.conversion ?? 1)).toFixed(2)} USD</span>
-                          <a href="https://wa.me/51913190401" target="_blank" className='flex items-center gap-1 '>
+                          <a href="https://wa.me/51972557287" target="_blank" className='flex items-center gap-1 '>
                             <img src="https://img.icons8.com/?size=200&id=BkugfgmBwtEI&format=png&color=000000" className='size-5' />
                             <span className='text-green-500 underline text-xs'>913190401</span>
                           </a>
@@ -166,7 +164,7 @@ export function RecargarDialog() {
 
                     </div>
 
-                    <p className="text-xs"><strong className='text-base'>+51 913 190 401</strong> <br /> Juan Laura P.</p>
+                    <p className="text-xs"><strong className='text-base'>+51 972 557 287</strong> <br /> Grobles Solutions</p>
 
                   </div>
                   <div className='flex flex-row items-center md:gap-2'>
@@ -174,8 +172,8 @@ export function RecargarDialog() {
 
                       <p className=" font-bold">Binance</p>
                       <p className=" text-xs">ID: 977731480</p>
-                      <p className=" text-xs">Nombre: Juan M.</p>
-                      <p className=" text-xs">1 USDT = 3.5 soles</p>
+                      <p className=" text-xs">Nombre: Grobles Solutions</p>
+                      <p className=" text-xs">1 USDT = 3.5 PEN</p>
                     </div>
                     <img src="https://images.seeklogo.com/logo-png/32/1/binance-coin-bnb-logo-png_seeklogo-325081.png" alt="Binance" className="md:size-14 size-10 " />
                   </div>

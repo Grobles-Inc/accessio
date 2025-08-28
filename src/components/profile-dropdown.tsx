@@ -20,7 +20,7 @@ export function ProfileDropdown() {
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' className='relative h-8 w-8 rounded-full'>
           <Avatar className='h-8 w-8'>
-            <AvatarFallback className='bg-gradient-to-r from-indigo-500 to-cyan-500 text-white'>
+            <AvatarFallback className='bg-gradient-to-b from-primary to-primary/80 text-white'>
               {user?.nombres?.charAt(0)}
             </AvatarFallback>
           </Avatar>
@@ -36,7 +36,7 @@ export function ProfileDropdown() {
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link to='/settings'>
-            Perfil
+            Mi Perfil
             <DropdownMenuShortcut>
               <IconUser />
             </DropdownMenuShortcut>

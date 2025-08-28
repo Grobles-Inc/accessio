@@ -112,7 +112,7 @@ export function RetirarFondosModal({
         monto_neto: calculosRetiro.montoNetoUsuario,
         comision: calculosRetiro.comisionDolares,
         id_cliente: user?.id || '',
-      }, '51913190401', isRealMobile ? 'mobile' : 'web')
+      }, '51972557287', isRealMobile ? 'mobile' : 'web')
     } catch (error) {
       console.error('Error:', error)
     }
@@ -262,7 +262,7 @@ export function RetirarFondosModal({
                   <p className="text-xs md:text-sm">• Se aplicará una comisión del {comisionPorcentaje}% sobre el monto.</p>
                   <p className="text-xs md:text-sm">• El dinero será retirado via comunicación previa con el administrador.</p>
                   <p className="text-xs md:text-sm mt-4 font-semibold">Para mayor información comunicarse al:</p>
-                  <p className="text-xs md:text-sm font-semibold">+51 913 190 401</p>
+                  <p className="text-xs md:text-sm font-semibold">+51 972 557 287</p>
                 </CardContent>
               </Card>
 
@@ -295,7 +295,7 @@ export function RetirarFondosModal({
                 <CardContent className="flex flex-col justify-center">
                   <div className="text-center">
                     <p className="text-xs md:text-sm mb-2">¿Necesitas ayuda?</p>
-                    <p className="text-xs md:text-sm font-semibold text-green-600">+51 913 190 401</p>
+                    <p className="text-xs md:text-sm font-semibold text-green-600">+51 972 557 287</p>
                   </div>
                 </CardContent>
               </Card>

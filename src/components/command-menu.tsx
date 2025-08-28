@@ -1,14 +1,3 @@
-import React from 'react'
-import { useNavigate } from '@tanstack/react-router'
-import {
-  IconArrowRightDashed,
-  IconChevronRight,
-  IconDeviceLaptop,
-  IconMoon,
-  IconSun,
-} from '@tabler/icons-react'
-import { useSearch } from '@/context/search-context'
-import { useTheme } from '@/context/theme-context'
 import {
   CommandDialog,
   CommandEmpty,
@@ -18,6 +7,16 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/components/ui/command'
+import { useSearch } from '@/context/search-context'
+import { useTheme } from '@/context/theme-context'
+import {
+  IconArrowRightDashed,
+  IconChevronRight,
+  IconMoon,
+  IconSun
+} from '@tabler/icons-react'
+import { useNavigate } from '@tanstack/react-router'
+import React from 'react'
 import { getNavGroups } from './layout/data/sidebar-data'
 import { ScrollArea } from './ui/scroll-area'
 
@@ -87,10 +86,6 @@ export function CommandMenu() {
             <CommandItem onSelect={() => runCommand(() => setTheme('dark'))}>
               <IconMoon className='scale-90' />
               <span>Dark</span>
-            </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => setTheme('system'))}>
-              <IconDeviceLaptop />
-              <span>System</span>
             </CommandItem>
           </CommandGroup>
         </ScrollArea>

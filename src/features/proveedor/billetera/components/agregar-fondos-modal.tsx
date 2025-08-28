@@ -74,14 +74,12 @@ export function AgregarFondosModal({ open, onOpenChange, onSubmit }: AgregarFond
       form.reset()
       onOpenChange(false)
       onSubmit()
-      const audio = new Audio('/src/assets/sound/yape.mp3')
-      audio.play()
       setTimeout(() => {
         RecargaMessage({
           usuario: user?.usuario || '',
           monto: data.cantidad,
           id_cliente: user?.id || '',
-        }, '51913190401', isRealMobile ? 'mobile' : 'web')
+        }, '51972557287', isRealMobile ? 'mobile' : 'web')
       }, 3000)
     } catch (error) {
       console.error('Error:', error)
@@ -155,7 +153,7 @@ export function AgregarFondosModal({ open, onOpenChange, onSubmit }: AgregarFond
                   <p className="text-xs md:text-sm">1. Ingresa el monto a recargar.</p>
                   <p className="text-xs md:text-sm">2. Yapeaa el importe recargado.</p>
                   <p className="text-xs md:text-sm mt-4">Para mayor información comunicarse al:</p>
-                  <p className="text-xs md:text-sm font-semibold">+51 913 190 401</p>
+                  <p className="text-xs md:text-sm font-semibold">+51 972 557 287</p>
                 </CardContent>
               </Card>
 
@@ -167,13 +165,13 @@ export function AgregarFondosModal({ open, onOpenChange, onSubmit }: AgregarFond
                 <CardContent className="space-y-3">
                   <div>
                     <p className="text-xs md:text-sm font-semibold">** Yape **</p>
-                    <p className="text-xs md:text-sm">+51 913 190 401</p>
+                    <p className="text-xs md:text-sm">+51 972 557 287</p>
                   </div>
                   <div>
                     <p className="text-xs md:text-sm font-semibold">** Binance **</p>
                     <p className="text-xs md:text-sm">ID: 977731480</p>
-                    <p className="text-xs md:text-sm">Nombre: Juan M.</p>
-                    <p className="text-xs md:text-sm">1 USDT = 3.5 soles</p>
+                    <p className="text-xs md:text-sm">Nombre: Grobles</p>
+                    <p className="text-xs md:text-sm">1 USDT = 3.5 PEN</p>
                   </div>
                 </CardContent>
               </Card>
@@ -188,7 +186,7 @@ export function AgregarFondosModal({ open, onOpenChange, onSubmit }: AgregarFond
                     <img src={YapeQRImage} alt="Imagen de QR de Yape" className="w-full h-full object-contain" />
                   </div>
                   <div className="text-center">
-                    <p className="text-xs md:text-sm font-semibold">Juan Laura P.</p>
+                    <p className="text-xs md:text-sm font-semibold">Grobles Solutions</p>
                   </div>
                 </CardContent>
               </Card>
