@@ -27,9 +27,10 @@ export default function LandingHeader() {
       <div className='flex flex-row justify-between items-center w-full'>
         <div className='flex justify-between items-center w-full md:w-auto'>
 
-          <Link to="/">
+          <Link to="/" className='flex items-center '>
 
-            <img src={Logo} alt="ML+" className='w-auto md:h-16 h-14 dark:invert' />
+            <img src={Logo} alt="Accessio" className='w-auto md:h-16 h-14 dark:invert' />
+            <span className='lg:text-3xl text-2xl font-bold'>Accessio</span>
 
 
           </Link>

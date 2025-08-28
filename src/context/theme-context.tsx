@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'dark' | 'light' | 'system'
+type Theme = 'dark' | 'light'
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -14,7 +14,7 @@ type ThemeProviderState = {
 }
 
 const initialState: ThemeProviderState = {
-  theme: 'system',
+  theme: 'dark',
   setTheme: () => null,
 }
 
@@ -32,26 +32,8 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
-    const applyTheme = (theme: Theme) => {
-      root.classList.remove('light', 'dark') // Remove existing theme classes
-      const systemTheme = mediaQuery.matches ? 'dark' : 'light'
-      const effectiveTheme = theme === 'system' ? systemTheme : theme
-      root.classList.add(effectiveTheme) // Add the new theme class
-    }
-
-    const handleChange = () => {
-      if (theme === 'system') {
-        applyTheme('system')
-      }
-    }
-
-    applyTheme(theme)
-
-    mediaQuery.addEventListener('change', handleChange)
-
-    return () => mediaQuery.removeEventListener('change', handleChange)
+    root.classList.remove('light', 'dark')
+    root.classList.add(theme)
   }, [theme])
 
   const setTheme = (theme: Theme) => {
