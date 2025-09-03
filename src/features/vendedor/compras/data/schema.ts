@@ -9,7 +9,8 @@ const compraEstadoSchema = z.union([
   z.literal('vencido'),
   z.literal('pedido'),
   z.literal('entregado'),
-  z.literal('reembolsado')
+  z.literal('reembolsado'),
+  z.literal('renovado'),
 ])
 
 

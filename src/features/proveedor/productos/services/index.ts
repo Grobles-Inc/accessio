@@ -1,6 +1,9 @@
 import { supabase } from '@/lib/supabase'
 import { Database } from '@/types/supabase'
-import { calcularNuevaFechaExpiracion } from '../utils/expiracion'
+import { 
+  calcularNuevaFechaExpiracion, 
+  calcularFechaExpiracionInicial 
+} from '../utils/expiracion'
 
 export type Producto = Database['public']['Tables']['productos']['Row']
 export type Usuario = Database['public']['Tables']['usuarios']['Row']
@@ -550,7 +553,7 @@ export const publicarProductoWithCommission = async (
     await procesarComisionPublicacion(proveedorId)
 
     // 4. Calcular fecha de expiración inicial (30 días desde ahora)
-    const fechaExpiracion = calcularNuevaFechaExpiracion(null, 30)
+    const fechaExpiracion = calcularFechaExpiracionInicial(30)
 
     // 5. Actualizar estado del producto a publicado y establecer fecha de expiración
     const { data: productoPublicado, error: errorActualizacion } = await supabase
@@ -718,10 +721,6 @@ export const deleteStockProducto = async (id: number) => {
 
 // === FUNCIONES PARA RENOVACIÓN DE PRODUCTOS ===
 
-/**
- * Renovar un producto - extiende la fecha de expiración por 30 días más
- * y cobra la comisión de renovación (igual a la de publicación)
- */
 export const renovarProducto = async (
   { productoId, proveedorId }: { productoId: number, proveedorId: string }
 ): Promise<{ success: boolean; error?: string; producto?: Producto }> => {
@@ -738,7 +737,7 @@ export const renovarProducto = async (
       .single()
 
     if (errorProducto || !producto) {
-      console.error('❌ Error al obtener producto:', errorProducto)
+      console.error('Error al obtener producto:', errorProducto)
       return { 
         success: false, 
         error: 'Producto no encontrado o no está publicado' 
@@ -770,7 +769,7 @@ export const renovarProducto = async (
     }
 
     // 4. Calcular nueva fecha de expiración
-    const nuevaFechaExpiracion = calcularNuevaFechaExpiracion(producto.fecha_expiracion, 30)
+    const nuevaFechaExpiracion = calcularNuevaFechaExpiracion(producto.fecha_expiracion, producto.tiempo_uso)
 
     // 5. Actualizar producto con nueva fecha de expiración
     const { data: productoRenovado, error: errorActualizacion } = await supabase
@@ -814,8 +813,7 @@ export const renovarProducto = async (
  */
 export const establecerFechaExpiracionInicial = async (productoId: number): Promise<void> => {
   try {
-    const fechaExpiracion = calcularNuevaFechaExpiracion(null, 30) // 30 días desde ahora
-    
+    const fechaExpiracion = calcularFechaExpiracionInicial(30)
     const { error } = await supabase
       .from('productos')
       .update({ 
@@ -948,9 +946,9 @@ export const verificarEstadoStockDespuesReembolso = async (stockProductoId: numb
     }
 
     // Ahora productos es un objeto singular, no un array
-    const producto = stock.productos as any
+    const producto = Array.isArray(stock.productos) ? stock.productos[0] : stock.productos
     const estaEnArray = producto?.stock_de_productos?.some(
-      (item: any) => item.id === stockProductoId
+      (item: { id: number }) => item.id === stockProductoId
     ) || false
 
     return {
